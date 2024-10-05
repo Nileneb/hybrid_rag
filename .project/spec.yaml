@@ -88,7 +88,7 @@ execution:
     stop_command: jupyter lab stop 8888
     user_msg: ""
     logfile_path: ""
-    timeout_seconds: 0
+    timeout_seconds: 60
     icon_url: ""
     webapp_options:
       autolaunch: true
@@ -104,6 +104,8 @@ execution:
   secrets:
   - variable: NVCF_RUN_KEY
     description: NVCF Run Key for Cloud Inference
+  - variable: NGC_CLI_API_KEY
+    description: NGC API Key for NIM authentication
   mounts:
   - type: project
     target: /project/
@@ -116,4 +118,12 @@ execution:
   - type: volume
     target: /mnt/milvus/
     description: Volume for storing the milvus database
+    options: ""
+  - type: host
+    target: /var/host-run/
+    description: Docker socket Host Mount
+    options: ""
+  - type: host
+    target: /mnt/host-home/
+    description: Host mount for LOCAL_NIM_HOME
     options: ""
