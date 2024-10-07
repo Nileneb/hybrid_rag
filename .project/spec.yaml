@@ -106,6 +106,8 @@ execution:
     description: NVCF Run Key for Cloud Inference
   - variable: NGC_CLI_API_KEY
     description: NGC API Key for NIM authentication
+  - variable: HF_TOKEN
+    description: Huggingface token
   mounts:
   - type: project
     target: /project/
