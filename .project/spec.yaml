@@ -97,6 +97,18 @@ execution:
         trim_prefix: false
       url_command: jupyter lab list 2>&1 | head -n 2 | tail -n 1 | cut -f1 -d' ' |
         grep -v 'Currently'
+  - name: Visual Studio Code
+    type: vs-code
+    class: native
+    start_command: ""
+    health_check_command: '[ \$(ps aux | grep ".vscode-server" | grep -v grep | wc
+      -l ) -gt 4 ] && [ \$(ps aux | grep "/.vscode-server/bin/.*/node .* net.createConnection"
+      | grep -v grep | wc -l) -gt 0 ]'
+    stop_command: ""
+    user_msg: ""
+    logfile_path: ""
+    timeout_seconds: 120
+    icon_url: ""
   resources:
     gpu:
       requested: 1
@@ -108,6 +120,8 @@ execution:
     description: NGC API Key for NIM authentication
   - variable: HF_TOKEN
     description: Huggingface token
+  - variable: HUGGING_FACE_HUB_TOKEN
+    description: HF Token for cloning model weights locally
   mounts:
   - type: project
     target: /project/
